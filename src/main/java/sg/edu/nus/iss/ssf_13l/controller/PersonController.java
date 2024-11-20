@@ -18,6 +18,9 @@ import sg.edu.nus.iss.ssf_13l.service.PersonService;
 
 
 
+
+
+
 @Controller
 @RequestMapping("/persons")
 public class PersonController {
@@ -57,5 +60,24 @@ public class PersonController {
         personService.delete(personService.findById(id));
         return "redirect:/persons";
     }
+
+    @GetMapping("/update/{id}")
+    public String updateForm(@PathVariable("id") String id, Model model) {
+        Person person = personService.findById(id);
+        model.addAttribute("person", person);
+        return "person-update";
+    }
+    
+    @PostMapping("/update")
+    public String postMethodName(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getAllErrors());
+            return "person-update";
+        }
+        personService.update(person);
+        return "redirect:/persons";
+    }
+    
+    
     
 }
