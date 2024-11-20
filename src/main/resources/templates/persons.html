@@ -15,8 +15,10 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Phone No.</th>
                 <th>Salary</th>
                 <th>DOB</th>
+                <th>Postal Code</th>
                 <th>Action</th>
             </thead>
             <tbody class="table-group-divider">
@@ -25,9 +27,11 @@
                     <td th:utext="${person.firstName}"></td>
                     <td th:utext="${person.lastName}"></td>
                     <td th:utext="${person.email}"></td>
+                    <td th:utext="${person.phone}"></td>
                     <td th:utext="${person.salary}"></td>
                     <td th:utext="${#temporals.format(person.dob, 'yyyy MMM dd')}"></td>
                     <!-- LocalDate = use #temporals; Data = use #dates -->
+                    <td th:utext="${person.postalCode}"></td>
 
                     <td>
                         <a class="btn btn-danger" th:href="@{/persons/delete/{id}(id=${person.id})}">Delete</a>

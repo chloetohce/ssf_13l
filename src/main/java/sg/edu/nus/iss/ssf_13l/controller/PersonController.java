@@ -16,11 +16,6 @@ import sg.edu.nus.iss.ssf_13l.model.Person;
 import sg.edu.nus.iss.ssf_13l.service.PersonService;
 
 
-
-
-
-
-
 @Controller
 @RequestMapping("/persons")
 public class PersonController {
@@ -50,7 +45,7 @@ public class PersonController {
             System.out.println(bindingResult.getAllErrors());
             return "person-create";
         }
-        Person p = new Person(person.getFirstName(),person.getLastName(),person.getDob(),person.getSalary(),person.getEmail());
+        Person p = new Person(person.getFirstName(),person.getLastName(),person.getDob(),person.getSalary(),person.getEmail(), person.getPhone(), person.getPostalCode());
         personService.create(p);
         return "redirect:/persons";
     }

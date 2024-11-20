@@ -27,7 +27,7 @@ public class PersonRepository {
                 String[] values = line.split(",");
                 String[] dateArr = values[2].split("-");
                 LocalDate dob = LocalDate.of(Integer.parseInt(dateArr[0]), Integer.parseInt(dateArr[1]), Integer.parseInt(dateArr[2]));
-                persons.add(new Person(values[0], values[1], dob, Integer.parseInt(values[3]), values[4]));
+                persons.add(new Person(values[0], values[1], dob, Integer.parseInt(values[3]), values[4], values[5], Integer.parseInt(values[6])));
             }
         } catch (Exception e) {
             System.out.println("Error reading file.");
