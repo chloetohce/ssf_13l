@@ -1,6 +1,8 @@
 package sg.edu.nus.iss.ssf_13l.repository;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,19 +20,18 @@ public class PersonRepository {
     
     public PersonRepository() {
         this.persons = new ArrayList<>();
-        persons.add(new Person("Abigail", "Holiday", LocalDate.now(), 2000, "abiday@gmail.com"));
-        persons.add(new Person("Lawrence", "Teo", LocalDate.now(), 5000, "lawteo@gmail.com"));
 
-        // try (BufferedReader in = new BufferedReader(new FileReader(db))) {
-        //     String line = "";
-        //     while ((line = in.readLine()) != null) {
-        //         String[] values = line.split(",");
-        //         LocalDate.
-        //         persons.add(new Person(values[0], values[1], dob, Integer.parseInt(values[3]), values[4]));
-        //     }
-        // } catch (Exception e) {
-        //     // TODO: handle exception
-        // }
+        try (BufferedReader in = new BufferedReader(new FileReader(db))) {
+            String line = "";
+            while ((line = in.readLine()) != null) {
+                String[] values = line.split(",");
+                String[] dateArr = values[2].split("-");
+                LocalDate dob = LocalDate.of(Integer.parseInt(dateArr[0]), Integer.parseInt(dateArr[1]), Integer.parseInt(dateArr[2]));
+                persons.add(new Person(values[0], values[1], dob, Integer.parseInt(values[3]), values[4]));
+            }
+        } catch (Exception e) {
+            System.out.println("Error reading file.");
+        }
     }
 
     public List<Person> getAllPersons() {

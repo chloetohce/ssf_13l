@@ -12,30 +12,35 @@
         <form method="POST" action="/persons/update" th:object="${person}">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" name="id" id="id" th:field="*{id}" th:placeholder="*{id}" readonly>
-                <!-- Disabled setting will disallow submission of id -> becomes null -->
+                <!-- Disabled setting will disallow submission of id -> becomes null. The value cannot be passed back in the model -->
                 <label class="text-secondary" for="firstName">ID</label>
                 <p class="text-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></p>
             </div>
+
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" name="firstName" id="firstName" th:field="*{firstName}" placeholder=" ">
                 <label class="text-secondary" for="firstName">First Name</label>
                 <p class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
             </div>
+
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" name="lastName" id="lastName" th:field="*{lastName}" placeholder=" ">
                 <label class="text-secondary" for="lastName">Last Name</label>
                 <p class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
             </div>
+
             <div class="form-floating mb-3">
                 <input type="email" class="form-control" name="email" id="email" th:field="*{email}" placeholder=" ">
                 <label class="text-secondary" for="email">Email</label>
                 <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
             </div>
+
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" name="salary" id="salary" th:field="*{salary}" placeholder="">
                 <label class="text-secondary" for="salary">Salary</label>
                 <p class="text-danger" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></p>
             </div>
+            
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" name="dob" id="dob" th:field="*{dob}" placeholder="yyyy-MM-dd">
                 <label class="text-secondary" for="dob">Date of Birth</label>
